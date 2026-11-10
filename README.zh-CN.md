@@ -74,7 +74,6 @@ Harness 不只是把问题交给模型。它还会在运行时改提示词、审
 
 ## 授权与署名
 
-## 授权与署名
 
 本分支是上游 [YuJunZhiXue/dsh-purge](https://github.com/YuJunZhiXue/dsh-purge) 的衍生作品，继续使用 **Apache-2.0**。
 
