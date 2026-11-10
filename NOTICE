@@ -5,3 +5,18 @@ Source: https://github.com/YuJunZhiXue/dsh-purge
 
 This product is licensed under the Apache License, Version 2.0.
 Derivative works must retain this NOTICE and attribution.
+
+===============================================================================
+
+dsh-purge (this fork)
+Copyright 2026 gwtwly-coder
+
+Source: https://github.com/gwtwly-coder/dsh-purge
+
+Changes in this fork, relative to upstream 1.1.82:
+  - retargeted to DeepSeek Harness 0.2.2-rc.1 (73 patch sites re-anchored)
+  - tail anchor section (dshpg-anchor, order 1000000)
+  - precise identity stripping instead of blanking the whole persona prefix
+  - conversation-history refusal scrub (patch #89, fail-open by design)
+
+The upstream notice above is retained in full, as required by Apache-2.0 section 4.
