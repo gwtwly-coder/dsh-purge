@@ -13,8 +13,6 @@
 <p align="center">
   <a href="https://github.com/gwtwly-coder/dsh-purge/stargazers"><img src="https://img.shields.io/github/stars/gwtwly-coder/dsh-purge?logo=github&label=Stars" alt="GitHub stars"></a>
   <a href="https://github.com/gwtwly-coder/dsh-purge/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue?style=flat" alt="Apache-2.0"></a>
-  <a href="https://awesome-dsh-plugin.com"><img src="https://awesome-dsh-plugin.com/badge.svg" alt="awesome · DSH plugin"></a>
-  <a href="https://deepseek.stream/plugins/dsh-purge"><img src="https://img.shields.io/badge/Hub-dsh--purge-1a73e8" alt="DeepSeek Harness Hub"></a>
   <a href="https://www.deepseek.com/harness/"><img src="https://img.shields.io/badge/dsh-0.2.0--rc.2%20%2F%200.2.2--rc.1-blue" alt="DSH"></a>
   <br>
   <img src="https://img.shields.io/badge/Node.js-%3E%3D18-339933?logo=node.js&logoColor=fff" alt="Node.js">
@@ -73,7 +71,6 @@ Harness 不只是把问题交给模型。它还会在运行时改提示词、审
 ---
 
 ## 授权与署名
-
 
 本分支是上游 [YuJunZhiXue/dsh-purge](https://github.com/YuJunZhiXue/dsh-purge) 的衍生作品，继续使用 **Apache-2.0**。
 
