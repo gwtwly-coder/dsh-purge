@@ -4,7 +4,7 @@
 
 <h1 align="center">⚔️ DeepSeek Harness 网络安全红队工具（dsh-purge）</h1>
 
-<p align="center"><strong>Version 1.1.84</strong></p>
+<p align="center"><strong>Version 1.1.85</strong></p>
 
 <p align="center">
   <em>DeepSeek Harness 破甲：让所有模型都能破甲，不同模型可换不同提示词；默认提示词面向国模「小码酱」。Jailbreak for every model — swap prompts per model. 如要二开，请查看署名要求部分</em>
@@ -52,7 +52,7 @@
 
 ## 介绍
 
-**dsh-purge** 是装在本机官方 [DeepSeek Harness](https://www.deepseek.com/harness/) 上的网络安全红队评测插件。当前 **1.1.84** 已适配 **DSH 0.2.2-rc.1**（0.2.0-rc.2 仍可用）。更新到更新的 rc 后，对不上的补丁会显示待应用或跳过，不会乱改文件。 官方 **Web**（`dsh web`）和官方 **桌面端**（EXE）都支持，两边分开装、分开应用。
+**dsh-purge** 是装在本机官方 [DeepSeek Harness](https://www.deepseek.com/harness/) 上的网络安全红队评测插件。当前 **1.1.85** 已适配 **DSH 0.2.2-rc.1**（0.2.0-rc.2 仍可用）。更新到更新的 rc 后，对不上的补丁会显示待应用或跳过，不会乱改文件。 官方 **Web**（`dsh web`）和官方 **桌面端**（EXE）都支持，两边分开装、分开应用。
 
 Harness 不只是把问题交给模型。它还会在运行时改提示词、审批门、沙箱和会话格式。只看「模型答不答」，会把宿主拦截误当成模型拒绝。这个插件在你自己的安装里把这两层分开，用来做受控评测，也用来看默认策略该不该收紧。
 
@@ -112,15 +112,15 @@ Harness 不只是把问题交给模型。它还会在运行时改提示词、审
 
 ## 适配范围
 
-**1.1.84 已适配 DSH 0.2.2-rc.1**，0.2.0-rc.2 仍可用。不要拿它去打 0.1.x。
+**1.1.85 已适配 DSH 0.2.2-rc.1**，0.2.0-rc.2 仍可用。不要拿它去打 0.1.x。
 
-- **dsh 0.2.2-rc.1**（官方桌面 / 官方 `dsh web`）：用 **1.1.84**。按官方安装包解出的真实产物实测：**applied 70 / na 10 / skipped 1（#80）/ pending 0 / failed 0**，被改的 33 个文件全部通过 `node --check`。0.2.2 把审批分支搬到 `dsh-tools/lib/pipeline.js`、把 web 引导文案搬到 `dsh-harness-dev-context`、把交付说明搬到 `dsh-deliverable-file-references`、把 PTC 沙箱文案搬到 `dsh-tool-executor-ptc`，这些位置都已跟着对齐。
+- **dsh 0.2.2-rc.1**（官方桌面 / 官方 `dsh web`）：用 **1.1.85**。按官方安装包解出的真实产物实测：**applied 70 / na 10 / skipped 1（#80）/ pending 0 / failed 0**，被改的 33 个文件全部通过 `node --check`。0.2.2 把审批分支搬到 `dsh-tools/lib/pipeline.js`、把 web 引导文案搬到 `dsh-harness-dev-context`、把交付说明搬到 `dsh-deliverable-file-references`、把 PTC 沙箱文案搬到 `dsh-tool-executor-ptc`，这些位置都已跟着对齐。
 - **dsh 0.2.0-rc.2**：实测 **applied 77 / skipped 2（#56、#80）/ na 2（#28、#76）/ missing_file 1（#71，软失败）/ pending 0**。
 - **dsh 0.1.7**（含 rc.1 / rc.2）：用 **1.1.39** 及更早 —— 在 [Releases](https://github.com/gwtwly-coder/dsh-purge/releases) 里选对应标签。
 
 对不上的补丁会显示待应用或跳过，不会乱改文件。
 
-### 1.1.84 新增：尾锚 / 身份段精细剥离 / 历史拒绝清洗
+### 1.1.85 新增：尾锚 / 身份段精细剥离 / 历史拒绝清洗
 
 三项都是「让规则真的留在上下文里」的补丁，不新增加载路径，只改装配与历史投影：
 
@@ -216,7 +216,7 @@ node node_modules/dsh-purge/scripts/ensure-profile-bundle.mjs
 - 桌面客户端也可以点按钮（`dsh://` 唤起，下的仍是同一份压缩包）。
 
 <p align="center">
-  <a href="dsh://plugin/install?id=dsh-purge&name=dsh-purge&version=1.1.84&repo=gwtwly-coder%2Fdsh-purge&permissions=%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%B3%A8%E5%85%A5%2C%E6%9C%AC%E6%9C%BA%E8%A1%A5%E4%B8%81%2C%E8%AE%BE%E7%BD%AE%E9%A1%B5&downloadUrl=https%3A%2F%2Fcodeload.github.com%2Fgwtwly-coder%2Fdsh-purge%2Ftar.gz%2Frefs%2Fheads%2Fmaster"><strong>唤起客户端一键安装</strong></a>
+  <a href="dsh://plugin/install?id=dsh-purge&name=dsh-purge&version=1.1.85&repo=gwtwly-coder%2Fdsh-purge&permissions=%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%B3%A8%E5%85%A5%2C%E6%9C%AC%E6%9C%BA%E8%A1%A5%E4%B8%81%2C%E8%AE%BE%E7%BD%AE%E9%A1%B5&downloadUrl=https%3A%2F%2Fcodeload.github.com%2Fgwtwly-coder%2Fdsh-purge%2Ftar.gz%2Frefs%2Fheads%2Fmaster"><strong>唤起客户端一键安装</strong></a>
 </p>
 
 **第 3 步 —— 重启宿主。** 只把插件写进 profile **还不会**改 `@deepseek-ai`。完全退出再打开刚装的那个宿主（Web：停掉 `dsh web` 再开；桌面：托盘也要退出，再开 exe）。

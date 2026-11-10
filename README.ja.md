@@ -4,7 +4,7 @@
 
 <h1 align="center">⚔️ DeepSeek Harness サイバーセキュリティ レッドチームツール (dsh-purge)</h1>
 
-<p align="center"><strong>バージョン 1.1.84</strong></p>
+<p align="center"><strong>バージョン 1.1.85</strong></p>
 
 <p align="center">
   <em>DeepSeek Harness のジェイルブレイク: すべてのモデルに対応し、モデルごとにプロンプトを切り替え。デフォルトプロンプトは 小码酱 用。ぜひ Star ⭐ を。これをベースに開発する場合は「要帰属表示」をご覧ください。</em>
@@ -52,7 +52,7 @@
 
 ## これは何か
 
-**dsh-purge** は、お使いのマシンにすでにインストールされている公式 [DeepSeek Harness](https://www.deepseek.com/harness/) 向けのサイバーセキュリティ レッドチームプラグインです。**1.1.84** は **DSH 0.2.2-rc.1** を対象とします（0.2.0-rc.2 も動作します）。より新しい RC では、マッチしないパッチは pending または skipped のままで、盲目的な書き換えはしません。 公式 **Web**（`dsh web`）と公式 **デスクトップ EXE** の両方に対応します。インストールと Apply はそれぞれ別々に行います。
+**dsh-purge** は、お使いのマシンにすでにインストールされている公式 [DeepSeek Harness](https://www.deepseek.com/harness/) 向けのサイバーセキュリティ レッドチームプラグインです。**1.1.85** は **DSH 0.2.2-rc.1** を対象とします（0.2.0-rc.2 も動作します）。より新しい RC では、マッチしないパッチは pending または skipped のままで、盲目的な書き換えはしません。 公式 **Web**（`dsh web`）と公式 **デスクトップ EXE** の両方に対応します。インストールと Apply はそれぞれ別々に行います。
 
 Harness は単にプロンプトを転送するだけではありません。プロンプトの書き換え、承認ゲート、サンドボックスポリシー、セッション移行を実行時に行います。「モデルは答えるか」だけを問うと、ホスト層のブロックをモデルの拒否と取り違えてしまいます。このプラグインは、あなた自身のインストール環境でこの 2 つの層を分離し、制御された評価や、どのデフォルトポリシーが過度に厳しいかを確認するために使います。
 
@@ -122,15 +122,15 @@ Harness は単にプロンプトを転送するだけではありません。プ
 
 ## 対応ホスト
 
-**1.1.84 は DSH 0.2.2-rc.1 を対象とします。** 0.2.0-rc.2 も動作します。0.1.x には適用しないでください。
+**1.1.85 は DSH 0.2.2-rc.1 を対象とします。** 0.2.0-rc.2 も動作します。0.1.x には適用しないでください。
 
-- **dsh 0.2.2-rc.1**（公式デスクトップ / 公式 `dsh web`）: **1.1.84** を使用。公式インストーラから展開した実物で実測: **applied 70 / na 10 / skipped 1（#80）/ pending 0 / failed 0**、変更した 33 ファイルはすべて `node --check` を通過。0.2.2 では承認分岐が `dsh-tools/lib/pipeline.js` へ、web 案内文が `dsh-harness-dev-context` へ、成果物の説明が `dsh-deliverable-file-references` へ、PTC サンドボックスの文言が `dsh-tool-executor-ptc` へ移動しており、いずれも追従済みです。
+- **dsh 0.2.2-rc.1**（公式デスクトップ / 公式 `dsh web`）: **1.1.85** を使用。公式インストーラから展開した実物で実測: **applied 70 / na 10 / skipped 1（#80）/ pending 0 / failed 0**、変更した 33 ファイルはすべて `node --check` を通過。0.2.2 では承認分岐が `dsh-tools/lib/pipeline.js` へ、web 案内文が `dsh-harness-dev-context` へ、成果物の説明が `dsh-deliverable-file-references` へ、PTC サンドボックスの文言が `dsh-tool-executor-ptc` へ移動しており、いずれも追従済みです。
 - **dsh 0.2.0-rc.2**: 実測 **applied 77 / skipped 2（#56、#80）/ na 2（#28、#76）/ missing_file 1（#71、ソフト）/ pending 0**。
 - **dsh 0.1.7**（rc.1 / rc.2 を含む）: **1.1.39** 以前を使用 — [Releases](https://github.com/gwtwly-coder/dsh-purge/releases) で該当タグを選択。
 
 マッチしないパッチは pending または skipped のままで、盲目的な書き換えはしません。
 
-### 1.1.84 の新機能: テールアンカー / 身元セクションの精密除去 / 履歴の拒否洗浄
+### 1.1.85 の新機能: テールアンカー / 身元セクションの精密除去 / 履歴の拒否洗浄
 
 3 つとも「ルールをコンテキスト内に残す」ためのパッチです。読み込み経路は増やさず、組み立てと履歴の投影だけを変えます:
 
@@ -220,7 +220,7 @@ node node_modules/dsh-purge/scripts/ensure-profile-bundle.mjs
 - デスクトップクライアントではボタンをクリックすることもできます（`dsh://` ディープリンク。同じ tarball をダウンロードします）。
 
 <p align="center">
-  <a href="dsh://plugin/install?id=dsh-purge&name=dsh-purge&version=1.1.84&repo=gwtwly-coder%2Fdsh-purge&permissions=%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%B3%A8%E5%85%A5%2C%E6%9C%AC%E6%9C%BA%E8%A1%A5%E4%B8%81%2C%E8%AE%BE%E7%BD%AE%E9%A1%B5&downloadUrl=https%3A%2F%2Fcodeload.github.com%2Fgwtwly-coder%2Fdsh-purge%2Ftar.gz%2Frefs%2Fheads%2Fmaster"><strong>デスクトップクライアントでインストール</strong></a>
+  <a href="dsh://plugin/install?id=dsh-purge&name=dsh-purge&version=1.1.85&repo=gwtwly-coder%2Fdsh-purge&permissions=%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%B3%A8%E5%85%A5%2C%E6%9C%AC%E6%9C%BA%E8%A1%A5%E4%B8%81%2C%E8%AE%BE%E7%BD%AE%E9%A1%B5&downloadUrl=https%3A%2F%2Fcodeload.github.com%2Fgwtwly-coder%2Fdsh-purge%2Ftar.gz%2Frefs%2Fheads%2Fmaster"><strong>デスクトップクライアントでインストール</strong></a>
 </p>
 
 **ステップ 3 — ホストを再起動する。** プラグインをプロファイルに追加しただけでは、`@deepseek-ai` にパッチは当たりません。インストールしたホストを完全に終了して再起動します（Web: `dsh web` を停止して起動し直す。デスクトップ: トレイアイコンも終了してから exe を開く）。
