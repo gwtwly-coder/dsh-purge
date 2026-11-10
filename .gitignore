@@ -1,0 +1,14 @@
+node_modules/
+*.log
+*.bak
+*.before-drop
+*.before-port
+*.orig
+*.dshpurge-prev
+app.asar*
+.DS_Store
+Thumbs.db
+*.tmp
+.tmp/
+syntax*/
+appext*/
