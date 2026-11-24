@@ -4,7 +4,7 @@
 
 <h1 align="center">⚔️ DeepSeek Harness cybersecurity red-team tool (dsh-purge)</h1>
 
-<p align="center"><strong>Version 1.1.85</strong></p>
+<p align="center"><strong>Version 1.1.87</strong></p>
 
 <p align="center">
   <em>DeepSeek Harness jailbreak: every model, swap prompts per model. Default prompt for 小码酱. Please star ⭐ If you build on this, see Attribution required.</em>
@@ -27,9 +27,9 @@
 
 This repository is a port of [YuJunZhiXue/dsh-purge](https://github.com/YuJunZhiXue/dsh-purge), maintained by **gwtwly-coder**.
 
-- **Target**: DeepSeek Harness **0.2.2-rc.1** (also works on 0.2.0-rc.2)
+- **Target**: DeepSeek Harness **0.2.2-rc.5** (also works on 0.2.0-rc.2)
 - **Added in this fork**: tail anchor, precise identity strip, history refusal scrub — see [release-notes](./release-notes.md)
-- **Measured**: on a real 0.2.2-rc.1 tree — applied 70 / pending 0 / failed 0; on a live 0.2.0 tree — applied 74 / pending 0
+- **Measured**: on a real 0.2.2-rc.5 tree — applied 68 / pending 0 / failed 0; on a live 0.2.0 tree — applied 74 / pending 0
 
 The upstream project is licensed under **Apache-2.0**; original copyright belongs to **YuJunZhiXue** — see [NOTICE](./NOTICE).
 Changes introduced in this fork are copyright **gwtwly-coder**.
@@ -52,7 +52,7 @@ Changes introduced in this fork are copyright **gwtwly-coder**.
 
 ## What this is
 
-**dsh-purge** is a cybersecurity red-team plugin for the official [DeepSeek Harness](https://www.deepseek.com/harness/) already installed on your machine. **1.1.85** targets **DSH 0.2.2-rc.1** (0.2.0-rc.2 still works). On a newer RC, unmatched patches stay pending or skipped; nothing is rewritten blindly. Official **Web** (`dsh web`) and the official **desktop EXE** are both supported. Install and Apply them separately.
+**dsh-purge** is a cybersecurity red-team plugin for the official [DeepSeek Harness](https://www.deepseek.com/harness/) already installed on your machine. **1.1.87** targets **DSH 0.2.2-rc.5** (0.2.0-rc.2 still works). On a newer RC, unmatched patches stay pending or skipped; nothing is rewritten blindly. Official **Web** (`dsh web`) and the official **desktop EXE** are both supported. Install and Apply them separately.
 
 Harness does more than forward a prompt. It rewrites prompts, approval gates, sandbox policy, and session migration at runtime. Asking only “will the model answer” treats a host-layer block as a model refusal. This plugin separates those two layers on your own install, for controlled evaluation and for seeing which default policy is too tight.
 
@@ -122,15 +122,15 @@ This repo is [Apache License 2.0](./LICENSE). Forks and redistributions must kee
 
 ## Supported hosts
 
-**1.1.85 targets DSH 0.2.2-rc.1.** 0.2.0-rc.2 still works. Do not apply it to 0.1.x.
+**1.1.87 targets DSH 0.2.2-rc.5.** 0.2.0-rc.2 still works. Do not apply it to 0.1.x.
 
-- **dsh 0.2.2-rc.1** (official desktop / official `dsh web`): use **1.1.85**. Measured on the real payload unpacked from the official installer: **applied 70 / na 10 / skipped 1 (#80) / pending 0 / failed 0**, and all 33 modified files pass `node --check`. 0.2.2 moved the approval branch into `dsh-tools/lib/pipeline.js`, the web-surface copy into `dsh-harness-dev-context`, the deliverable notes into `dsh-deliverable-file-references`, and the PTC sandbox copy into `dsh-tool-executor-ptc`; every one of those spots is matched now.
+- **dsh 0.2.2-rc.5** (official desktop / official `dsh web`): use **1.1.87**. Measured on the real payload unpacked from the official installer: **applied 68 / na 10 / skipped 1 (#80) / pending 0 / failed 0**, and all 33 modified files pass `node --check`. 0.2.2 moved the approval branch into `dsh-tools/lib/pipeline.js`, the web-surface copy into `dsh-harness-dev-context`, the deliverable notes into `dsh-deliverable-file-references`, and the PTC sandbox copy into `dsh-tool-executor-ptc`; every one of those spots is matched now.
 - **dsh 0.2.0-rc.2**: measured **applied 77 / skipped 2 (#56, #80) / na 2 (#28, #76) / missing_file 1 (#71, soft) / pending 0**.
 - **dsh 0.1.7** (incl. rc.1 / rc.2): use **1.1.39** or older — pick the tag on [Releases](https://github.com/gwtwly-coder/dsh-purge/releases).
 
 Unmatched patches stay pending or skipped; nothing is rewritten blindly.
 
-### New in 1.1.85: tail anchor / precise identity strip / refusal scrub
+### New in 1.1.87: tail anchor / precise identity strip / refusal scrub
 
 All three keep the rules **inside** the context window. No new load path — only assembly and history projection change:
 
@@ -138,7 +138,7 @@ All three keep the rules **inside** the context window. No new load path — onl
 - **Precise identity strip** — an official identity block used to be **blanked whole**, taking the user's own content in the same block (red-team ops text, cwd note) with it. Now official identity sentences are removed one by one and the rest is kept verbatim; the block is cleared only when nothing else is left.
 - **Refusal scrub (#89)** — once the model says "no, this is strictly forbidden", that sentence stays in history forever and is replayed on every turn; the model sees "I refused before" and keeps refusing, with no self-healing. The `deriveMessages()` exit now rewrites such pure refusals — including subagent-settled notices that arrive as `role:user` — into a void marker. The test is "refusal phrasing + no code block / URL / path / command + ≤ 300 chars", so ordinary notes like "sorry, the path was wrong" are left alone, and **text the user actually typed is never touched**.
 
-Measured on the real 0.2.2-rc.1 payload: **applied 70 / na 10 / skipped 1 (#80) / pending 0 / failed 0**.
+Measured on the real 0.2.2-rc.5 payload: **applied 68 / na 10 / skipped 1 (#80) / pending 0 / failed 0**.
 
 ### Client upgrade: run "before", click upgrade, then run "after"
 
@@ -226,7 +226,7 @@ node node_modules/dsh-purge/scripts/ensure-profile-bundle.mjs
 - On the desktop client you can also click the button (`dsh://` deep link; it still downloads the same tarball).
 
 <p align="center">
-  <a href="dsh://plugin/install?id=dsh-purge&name=dsh-purge&version=1.1.85&repo=gwtwly-coder%2Fdsh-purge&permissions=%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%B3%A8%E5%85%A5%2C%E6%9C%AC%E6%9C%BA%E8%A1%A5%E4%B8%81%2C%E8%AE%BE%E7%BD%AE%E9%A1%B5&downloadUrl=https%3A%2F%2Fcodeload.github.com%2Fgwtwly-coder%2Fdsh-purge%2Ftar.gz%2Frefs%2Fheads%2Fmaster"><strong>Install in desktop client</strong></a>
+  <a href="dsh://plugin/install?id=dsh-purge&name=dsh-purge&version=1.1.87&repo=gwtwly-coder%2Fdsh-purge&permissions=%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%B3%A8%E5%85%A5%2C%E6%9C%AC%E6%9C%BA%E8%A1%A5%E4%B8%81%2C%E8%AE%BE%E7%BD%AE%E9%A1%B5&downloadUrl=https%3A%2F%2Fcodeload.github.com%2Fgwtwly-coder%2Fdsh-purge%2Ftar.gz%2Frefs%2Fheads%2Fmain"><strong>Install in desktop client</strong></a>
 </p>
 
 **Step 3 — Restart the host.** Adding the plugin to a profile does **not** patch `@deepseek-ai` by itself. Fully quit and reopen the host you just installed into (Web: stop `dsh web` and start again; Desktop: quit the tray icon too, then open the exe).

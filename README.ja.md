@@ -4,7 +4,7 @@
 
 <h1 align="center">⚔️ DeepSeek Harness サイバーセキュリティ レッドチームツール (dsh-purge)</h1>
 
-<p align="center"><strong>バージョン 1.1.85</strong></p>
+<p align="center"><strong>バージョン 1.1.87</strong></p>
 
 <p align="center">
   <em>DeepSeek Harness のジェイルブレイク: すべてのモデルに対応し、モデルごとにプロンプトを切り替え。デフォルトプロンプトは 小码酱 用。ぜひ Star ⭐ を。これをベースに開発する場合は「要帰属表示」をご覧ください。</em>
@@ -27,9 +27,9 @@
 
 本リポジトリは [YuJunZhiXue/dsh-purge](https://github.com/YuJunZhiXue/dsh-purge) の移植版で、**gwtwly-coder** が保守しています。
 
-- **対象**: DeepSeek Harness **0.2.2-rc.1**（0.2.0-rc.2 でも動作）
+- **対象**: DeepSeek Harness **0.2.2-rc.5**（0.2.0-rc.2 でも動作）
 - **本フォークの追加**: テールアンカー、アイデンティティ段落の精密除去、履歴の拒否スクラブ — [release-notes](./release-notes.md) 参照
-- **実測**: 0.2.2-rc.1 の実ツリーで applied 70 / pending 0 / failed 0、稼働中の 0.2.0 ツリーで applied 74 / pending 0
+- **実測**: 0.2.2-rc.5 の実ツリーで applied 68 / pending 0 / failed 0、稼働中の 0.2.0 ツリーで applied 74 / pending 0
 
 上流は **Apache-2.0** で、原著作者は **YuJunZhiXue** です（[NOTICE](./NOTICE) 参照）。
 本フォークの変更部分の著作権は **gwtwly-coder** に帰属します。
@@ -52,7 +52,7 @@
 
 ## これは何か
 
-**dsh-purge** は、お使いのマシンにすでにインストールされている公式 [DeepSeek Harness](https://www.deepseek.com/harness/) 向けのサイバーセキュリティ レッドチームプラグインです。**1.1.85** は **DSH 0.2.2-rc.1** を対象とします（0.2.0-rc.2 も動作します）。より新しい RC では、マッチしないパッチは pending または skipped のままで、盲目的な書き換えはしません。 公式 **Web**（`dsh web`）と公式 **デスクトップ EXE** の両方に対応します。インストールと Apply はそれぞれ別々に行います。
+**dsh-purge** は、お使いのマシンにすでにインストールされている公式 [DeepSeek Harness](https://www.deepseek.com/harness/) 向けのサイバーセキュリティ レッドチームプラグインです。**1.1.87** は **DSH 0.2.2-rc.5** を対象とします（0.2.0-rc.2 も動作します）。より新しい RC では、マッチしないパッチは pending または skipped のままで、盲目的な書き換えはしません。 公式 **Web**（`dsh web`）と公式 **デスクトップ EXE** の両方に対応します。インストールと Apply はそれぞれ別々に行います。
 
 Harness は単にプロンプトを転送するだけではありません。プロンプトの書き換え、承認ゲート、サンドボックスポリシー、セッション移行を実行時に行います。「モデルは答えるか」だけを問うと、ホスト層のブロックをモデルの拒否と取り違えてしまいます。このプラグインは、あなた自身のインストール環境でこの 2 つの層を分離し、制御された評価や、どのデフォルトポリシーが過度に厳しいかを確認するために使います。
 
@@ -122,15 +122,15 @@ Harness は単にプロンプトを転送するだけではありません。プ
 
 ## 対応ホスト
 
-**1.1.85 は DSH 0.2.2-rc.1 を対象とします。** 0.2.0-rc.2 も動作します。0.1.x には適用しないでください。
+**1.1.87 は DSH 0.2.2-rc.5 を対象とします。** 0.2.0-rc.2 も動作します。0.1.x には適用しないでください。
 
-- **dsh 0.2.2-rc.1**（公式デスクトップ / 公式 `dsh web`）: **1.1.85** を使用。公式インストーラから展開した実物で実測: **applied 70 / na 10 / skipped 1（#80）/ pending 0 / failed 0**、変更した 33 ファイルはすべて `node --check` を通過。0.2.2 では承認分岐が `dsh-tools/lib/pipeline.js` へ、web 案内文が `dsh-harness-dev-context` へ、成果物の説明が `dsh-deliverable-file-references` へ、PTC サンドボックスの文言が `dsh-tool-executor-ptc` へ移動しており、いずれも追従済みです。
+- **dsh 0.2.2-rc.5**（公式デスクトップ / 公式 `dsh web`）: **1.1.87** を使用。公式インストーラから展開した実物で実測: **applied 68 / na 10 / skipped 1（#80）/ pending 0 / failed 0**、変更した 33 ファイルはすべて `node --check` を通過。0.2.2 では承認分岐が `dsh-tools/lib/pipeline.js` へ、web 案内文が `dsh-harness-dev-context` へ、成果物の説明が `dsh-deliverable-file-references` へ、PTC サンドボックスの文言が `dsh-tool-executor-ptc` へ移動しており、いずれも追従済みです。
 - **dsh 0.2.0-rc.2**: 実測 **applied 77 / skipped 2（#56、#80）/ na 2（#28、#76）/ missing_file 1（#71、ソフト）/ pending 0**。
 - **dsh 0.1.7**（rc.1 / rc.2 を含む）: **1.1.39** 以前を使用 — [Releases](https://github.com/gwtwly-coder/dsh-purge/releases) で該当タグを選択。
 
 マッチしないパッチは pending または skipped のままで、盲目的な書き換えはしません。
 
-### 1.1.85 の新機能: テールアンカー / 身元セクションの精密除去 / 履歴の拒否洗浄
+### 1.1.87 の新機能: テールアンカー / 身元セクションの精密除去 / 履歴の拒否洗浄
 
 3 つとも「ルールをコンテキスト内に残す」ためのパッチです。読み込み経路は増やさず、組み立てと履歴の投影だけを変えます:
 
@@ -138,7 +138,7 @@ Harness は単にプロンプトを転送するだけではありません。プ
 - **身元セクションの精密除去** — これまでは公式の身元ブロックを**丸ごと空**にしていたため、同じブロック内のユーザー自身の内容（レッドチーム運用文、cwd の説明）まで失われていました。現在は公式の身元文を 1 文ずつ外し、残りはそのまま保持します。何も残らない場合だけ空にします。
 - **履歴の拒否洗浄（#89）** — モデルが一度「いいえ、これは厳禁です」と書くと、その文は履歴に残り毎ターン再生されます。モデルは「以前拒否した」と見て拒否を続け、自己修復しません。`deriveMessages()` の出口で、そうした純粋な拒否（サブエージェント終了時に `role:user` として届く通知を含む）を無効マーカーに書き換えます。判定は「拒否表現 + コードブロック/URL/パス/コマンドを含まない + 300 文字以内」なので、「すみません、パスが違いました」のような通常の説明は消しません。**ユーザーが実際に入力した文は一切変更しません**。
 
-実測（0.2.2-rc.1 の実物）: **applied 70 / na 10 / skipped 1（#80）/ pending 0 / failed 0**。
+実測（0.2.2-rc.5 の実物）: **applied 68 / na 10 / skipped 1（#80）/ pending 0 / failed 0**。
 
 ### クライアント更新：「更新前」→ 更新をクリック →「更新後」
 
@@ -220,7 +220,7 @@ node node_modules/dsh-purge/scripts/ensure-profile-bundle.mjs
 - デスクトップクライアントではボタンをクリックすることもできます（`dsh://` ディープリンク。同じ tarball をダウンロードします）。
 
 <p align="center">
-  <a href="dsh://plugin/install?id=dsh-purge&name=dsh-purge&version=1.1.85&repo=gwtwly-coder%2Fdsh-purge&permissions=%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%B3%A8%E5%85%A5%2C%E6%9C%AC%E6%9C%BA%E8%A1%A5%E4%B8%81%2C%E8%AE%BE%E7%BD%AE%E9%A1%B5&downloadUrl=https%3A%2F%2Fcodeload.github.com%2Fgwtwly-coder%2Fdsh-purge%2Ftar.gz%2Frefs%2Fheads%2Fmaster"><strong>デスクトップクライアントでインストール</strong></a>
+  <a href="dsh://plugin/install?id=dsh-purge&name=dsh-purge&version=1.1.87&repo=gwtwly-coder%2Fdsh-purge&permissions=%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%B3%A8%E5%85%A5%2C%E6%9C%AC%E6%9C%BA%E8%A1%A5%E4%B8%81%2C%E8%AE%BE%E7%BD%AE%E9%A1%B5&downloadUrl=https%3A%2F%2Fcodeload.github.com%2Fgwtwly-coder%2Fdsh-purge%2Ftar.gz%2Frefs%2Fheads%2Fmain"><strong>デスクトップクライアントでインストール</strong></a>
 </p>
 
 **ステップ 3 — ホストを再起動する。** プラグインをプロファイルに追加しただけでは、`@deepseek-ai` にパッチは当たりません。インストールしたホストを完全に終了して再起動します（Web: `dsh web` を停止して起動し直す。デスクトップ: トレイアイコンも終了してから exe を開く）。
